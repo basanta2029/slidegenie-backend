@@ -7,6 +7,7 @@ from app.api.v1.endpoints import (
     academic,
     auth,
     document_upload,
+    export,
     generation,
     health,
     oauth,
@@ -30,4 +31,5 @@ api_router.include_router(templates.router, prefix="/templates", tags=["template
 api_router.include_router(generation.router, prefix="/generation", tags=["generation"])
 api_router.include_router(slides.router, prefix="/slides", tags=["slides"])
 api_router.include_router(document_upload.router, prefix="/documents/upload", tags=["document-upload"])
+api_router.include_router(export.router, tags=["export"])
 api_router.include_router(websocket.router, prefix="/ws", tags=["websocket"])
