@@ -10,6 +10,7 @@ from app.api.v1.endpoints import (
     health,
     oauth,
     presentations,
+    slides,
     templates,
     users,
 )
@@ -25,3 +26,4 @@ api_router.include_router(users.router, prefix="/users", tags=["users"])
 api_router.include_router(presentations.router, prefix="/presentations", tags=["presentations"])
 api_router.include_router(templates.router, prefix="/templates", tags=["templates"])
 api_router.include_router(generation.router, prefix="/generation", tags=["generation"])
+api_router.include_router(slides.router, prefix="/slides", tags=["slides"])
