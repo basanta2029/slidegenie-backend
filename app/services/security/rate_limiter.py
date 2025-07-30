@@ -505,3 +505,20 @@ rate_limiter = RateLimiter(
     default_window=60,
     strategy=RateLimitStrategy.SLIDING_WINDOW,
 )
+
+
+def create_rate_limiter():
+    """
+    Create a SlowAPI rate limiter instance for FastAPI integration.
+    
+    Returns:
+        Limiter: Configured SlowAPI limiter instance
+    """
+    from slowapi import Limiter
+    from slowapi.util import get_remote_address
+    
+    return Limiter(
+        key_func=get_remote_address,
+        storage_uri=settings.REDIS_URL,
+        default="100/hour"  # Default rate limit
+    )

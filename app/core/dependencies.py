@@ -165,3 +165,61 @@ async def get_current_user_optional(
     except Exception:
         # Don't raise exception for optional auth
         return None
+
+
+async def get_current_user_websocket(token: str) -> User:
+    """
+    Get current authenticated user from JWT token for WebSocket connections.
+    
+    Args:
+        token: JWT access token
+        
+    Returns:
+        Current user
+        
+    Raises:
+        HTTPException: If token is invalid or user not found
+    """
+    from app.infrastructure.database.base import get_db
+    
+    # Decode token
+    payload = decode_token(token)
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials"
+        )
+    
+    # Check token type
+    if payload.get("type") != "access":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token type"
+        )
+    
+    # Get user
+    user_id = payload.get("sub")
+    if not user_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token payload"
+        )
+    
+    # Get database session - note this is for WebSocket context
+    async for db in get_db():
+        user_repo = UserRepository(db)
+        user = await user_repo.get(user_id)
+        
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="User not found"
+            )
+        
+        if not user.is_active:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Inactive user"
+            )
+        
+        return user

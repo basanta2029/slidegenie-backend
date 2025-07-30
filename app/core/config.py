@@ -126,6 +126,30 @@ class Settings(BaseSettings):
     MAX_UPLOAD_SIZE_MB: int = 50
     ALLOWED_UPLOAD_EXTENSIONS: List[str] = [".pdf", ".txt", ".md", ".tex", ".docx"]
     
+    # Async Processing
+    ASYNC_PROCESSING_ENABLED: bool = True
+    TASK_QUEUE_BACKEND: str = "arq"  # Options: "arq", "celery"
+    MAX_CONCURRENT_TASKS: int = 10
+    TASK_RETRY_MAX_ATTEMPTS: int = 3
+    TASK_RETRY_DELAY_SECONDS: int = 5
+    MULTIPART_UPLOAD_THRESHOLD_MB: int = 100
+    UPLOAD_CHUNK_SIZE_MB: int = 8
+    
+    # WebSocket Settings
+    WEBSOCKET_HOST: str = "localhost"
+    WEBSOCKET_PORT: int = 8765
+    WEBSOCKET_HEARTBEAT_INTERVAL: int = 30
+    WEBSOCKET_MAX_CONNECTIONS_PER_USER: int = 5
+    
+    # Progress Tracking
+    PROGRESS_RETENTION_DAYS: int = 30
+    PROGRESS_UPDATE_RATE_LIMIT: int = 10  # Updates per second per job
+    
+    # Resource Management
+    MAX_MEMORY_MB_PER_TASK: int = 2048
+    MAX_PROCESSING_TIME_MINUTES: int = 60
+    CPU_THROTTLE_THRESHOLD: float = 0.8
+    
     # Generation Limits
     FREE_TIER_PRESENTATIONS_PER_MONTH: int = 5
     FREE_TIER_STORAGE_MB: int = 100
