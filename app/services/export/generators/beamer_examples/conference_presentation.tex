@@ -1,0 +1,205 @@
+
+\documentclass[11pt,16:9,handout]{beamer}
+
+% Theme configuration
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+\usefonttheme{default}
+
+
+
+% Navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Package imports
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=blue]{hyperref}
+\usepackage{url}
+\usepackage{subcaption}
+
+% Bibliography configuration
+\usepackage[backend=biber,style=authoryear-comp,sorting=nyt,maxnames=3,minnames=1]{biblatex}
+\addbibresource{references.bib}
+
+% TikZ libraries
+
+
+% Custom commands
+\newcommand{\CNN}{\text{CNN}}
+\newcommand{\RNN}{\text{RNN}}
+\newcommand{\LSTM}{\text{LSTM}}
+\DeclareMathOperator{\softmax}{softmax}
+
+% Title page information
+\title{Deep Learning for Computer Vision:\textbackslash\{\}\textbackslash\{\}Recent Advances and Applications}
+\author{Dr. Elena Rodriguez\textbackslash\{\}\textbackslash\{\}Joint work with Alex Kim and Maria Santos}
+\institute{AI Research Lab\\Institute of Technology}
+\date{Conference on AI 2024}
+
+% Document settings
+\setbeamertemplate{frametitle continuation}{(\insertcontinuationcount)}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% Handout configuration
+\usepackage{pgfpages}
+\pgfpagesuselayout{4 on 1}[a4paper,border shrink=2mm,landscape]
+\setbeameroption{show notes}
+
+\begin{document}
+
+% Title frame
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Table of contents
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Introduction}
+
+            Deep learning has revolutionized computer vision \cite{lecun2015deep}:
+            
+\begin{itemize}
+  \item \textbf{Image Classification}: Surpassed human performance on ImageNet
+  \item \textbf{Object Detection}: Real-time detection in autonomous vehicles
+  \item \textbf{Semantic Segmentation}: Pixel-level understanding
+  \item \textbf{Generative Models}: Creating realistic synthetic images
+\end{itemize}
+            
+            The transformer architecture \cite{attention2017} has also found applications in vision tasks.
+            
+
+\end{frame}
+
+
+
+\begin{frame}{Network Architecture}
+Our proposed architecture combines multiple components:
+
+
+\begin{figure}[center]
+    \centering
+    \includegraphics[width=0.95\textwidth]{network_architecture.png}
+    \caption{Overview of the proposed deep network architecture}
+    \label{fig:architecture}
+\end{figure}
+
+
+\begin{equation}
+\text{Output} = \softmax(W_3 \cdot \text{ReLU}(W_2 \cdot \text{ReLU}(W_1 \cdot \mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2) + \mathbf{b}_3)
+\end{equation}
+
+\end{frame}
+
+
+
+\begin{frame}{Experimental Results}
+Performance comparison on standard benchmarks:
+
+
+\begin{table}[center]
+    \centering
+    \caption{Accuracy (\textbackslash\{\}\%) comparison on image classification benchmarks}
+    \begin{tabular}{lllll}
+    \toprule
+        Method & CIFAR-10 & CIFAR-100 & ImageNet & Parameters \\
+        \midrule
+        ResNet-50 & 95.3 & 78.1 & 76.2 & 25.6M \\
+        DenseNet-121 & 95.1 & 77.9 & 74.4 & 8.0M \\
+        EfficientNet-B0 & 96.7 & 81.2 & 77.3 & 5.3M \\
+        Our Method & **97.2** & **82.8** & **78.9** & 7.1M \\
+        \bottomrule
+    \end{tabular}
+    
+    \label{tab:results}
+\end{table}
+
+
+\begin{equation}
+\text{Improvement} = \frac{\text{Our Accuracy} - \text{Baseline Accuracy}}{\text{Baseline Accuracy}} \times 100\%
+\end{equation}
+
+\end{frame}
+
+
+
+\begin{frame}{Ablation Study}
+Analysis of individual component contributions:
+
+
+\begin{figure}[center]
+    \centering
+    
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ablation_accuracy.png}
+        \caption{Accuracy vs. components}
+        
+    \end{subfigure}
+
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{ablation_loss.png}
+        \caption{Training loss curves}
+        
+    \end{subfigure}
+    \caption{Ablation study results}
+    \label{fig:ablation}
+\end{figure}
+
+
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]{Conclusions and Future Work}
+
+            \textbf{Key Contributions:}
+\begin{itemize}
+  \item Novel architecture achieving SOTA results
+  \item Efficient design with fewer parameters
+  \item Comprehensive evaluation on multiple datasets
+\end{itemize}
+            
+            \textbf{Future Directions:}
+\begin{itemize}
+  \item Extension to video understanding
+  \item Multi-modal learning applications
+  \item Deployment optimization for mobile devices
+\end{itemize}
+            
+            \textbf{Acknowledgments:} This work was supported by NSF Grant AI-2024-001.
+            
+
+\end{frame}
+
+
+% Bibliography
+
+\begin{frame}[allowframebreaks]{References}
+    \printbibliography
+\end{frame}
+
+
+\end{document}

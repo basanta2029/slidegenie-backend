@@ -1,0 +1,169 @@
+
+\documentclass[11pt,16:9]{beamer}
+
+% Theme configuration
+\usetheme{Warsaw}
+\usecolortheme{crane}
+\usefonttheme{default}
+
+
+
+% Navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Package imports
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{bm}
+
+% Bibliography configuration
+
+
+% TikZ libraries
+\usetikzlibrary{calc,patterns,decorations.pathreplacing}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\DeclareMathOperator{\Tr}{Tr}
+
+% Title page information
+\title{Linear Algebra in Machine Learning}
+\author{Prof. Michael Chen}
+
+\date{\today}
+
+% Document settings
+\setbeamertemplate{frametitle continuation}{(\insertcontinuationcount)}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% Handout configuration
+
+
+\begin{document}
+
+% Title frame
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Table of contents
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+
+
+\begin{frame}{Vector Spaces}
+
+            A \textbf{vector space} $V$ over a field $\mathbb{F}$ is a set equipped with:
+            
+\begin{itemize}
+  \item Vector addition: $+: V \times V \rightarrow V$
+  \item Scalar multiplication: $\cdot: \mathbb{F} \times V \rightarrow V$
+\end{itemize}
+            
+            Satisfying the axioms:
+\begin{itemize}
+  \item Associativity of addition
+  \item Commutativity of addition
+  \item Identity element for addition
+  \item Inverse elements for addition
+  \item Distributivity of scalar multiplication
+\end{itemize}
+            
+
+\begin{equation}
+\forall \mathbf{u}, \mathbf{v} \in V: \mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}
+\end{equation}
+
+\begin{equation}
+\exists \mathbf{0} \in V: \mathbf{v} + \mathbf{0} = \mathbf{v}, \forall \mathbf{v} \in V
+\end{equation}
+
+\end{frame}
+
+
+
+\begin{frame}{Matrix Operations}
+Essential matrix operations for ML:
+
+\begin{equation}
+\text{Matrix multiplication: } (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+\end{equation}
+
+\begin{equation}
+\text{Transpose: } (A^T)_{ij} = A_{ji}
+\end{equation}
+
+\begin{equation}
+\text{Trace: } \Tr(A) = \sum_{i=1}^{n} A_{ii}
+\end{equation}
+
+\begin{equation}
+\text{Determinant: } \det(A) = \sum_{\sigma \in S_n} \text{sgn}(\sigma) \prod_{i=1}^{n} A_{i,\sigma(i)}
+\end{equation}
+
+\end{frame}
+
+
+
+\begin{frame}{Eigenvalues and Eigenvectors}
+
+            For a square matrix $A \in \mathbb{R}^{n \times n}$:
+            
+            An \textbf{eigenvector} $\mathbf{v} \neq \mathbf{0}$ and \textbf{eigenvalue} $\lambda$ satisfy:
+            
+
+
+\begin{table}[center]
+    \centering
+    \caption{Eigenvalue properties}
+    \begin{tabular}{lll}
+    \toprule
+        Property & Symmetric Matrix & General Matrix \\
+        \midrule
+        Real eigenvalues & Always & Not guaranteed \\
+        Orthogonal eigenvectors & Yes & Not guaranteed \\
+        Diagonalizable & Always & Not guaranteed \\
+        \bottomrule
+    \end{tabular}
+    
+    
+\end{table}
+
+
+\begin{equation}
+A\mathbf{v} = \lambda\mathbf{v}
+\end{equation}
+
+\begin{equation}
+\det(A - \lambda I) = 0 \quad \text{(characteristic equation)}
+\end{equation}
+
+\begin{equation}
+\text{Eigendecomposition: } A = Q\Lambda Q^{-1}
+\end{equation}
+
+\end{frame}
+
+
+% Bibliography
+
+
+\end{document}
