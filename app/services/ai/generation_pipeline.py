@@ -19,7 +19,7 @@ from app.domain.schemas.presentation import (
     SlideLayout,
     SlideType,
 )
-from app.infrastructure.cache import get_redis_client
+from app.infrastructure.cache.redis import get_redis_client
 from app.services.ai.anthropic_provider import AnthropicProvider
 from app.services.ai.base import (
     AIProvider,
