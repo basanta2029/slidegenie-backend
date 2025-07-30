@@ -78,6 +78,14 @@ class Settings(BaseSettings):
     AI_MAX_RETRIES: int = 3
     AI_TIMEOUT_SECONDS: int = 120
     
+    # AI Budget Limits (monthly in USD)
+    AI_BUDGET_ANTHROPIC: float = 1000.0
+    AI_BUDGET_OPENAI: float = 500.0
+    
+    # AI Cache Settings
+    AI_CACHE_TTL_DAYS: int = 7
+    AI_CACHE_ENABLED: bool = True
+    
     # Email
     SMTP_HOST: Optional[str] = None
     SMTP_PORT: int = 587
